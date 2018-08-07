@@ -20,9 +20,9 @@
         }
     ],
     "require": {
-        "php": ">=5.3.3",
-        "zendframework/zend-loader": "2.0.*@dev",
-        "zendframework/zend-filter": "2.0.*@dev",
-        "zendframework/zend-stdlib": "2.0.*@dev"
+        "php": "^5.5 || ^7.0",
+        "zendframework/zend-loader": "^2.5",
+        "zendframework/zend-filter": "^2.5",
+        "zendframework/zend-stdlib": "^2.5"
     }
 }
