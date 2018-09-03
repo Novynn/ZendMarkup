@@ -602,6 +602,7 @@ class Bbcode implements ParserInterface
     protected function _createTree($tokens)
     {
         // variable initialization for treebuilder
+        $currentGroup            = $this->_group;
         $groupStack              = array($this->_group);
         $this->_searchedStoppers = array();
         $this->_tree             = new TokenList();
@@ -686,13 +687,13 @@ class Bbcode implements ParserInterface
                         );
                         $this->_current->addChild($child);
 
-                        // set the new group
-                        $groupStack[] = $this->_group;
-                        $this->_group = $this->_getGroup($token['name']);
-
                         // add stoppers for this tag, if its has stoppers
                         if ($this->_getType($token['name']) == self::TYPE_DEFAULT) {
                             $this->_current = $child;
+
+                            // set the new group
+                            $groupStack[] = $this->_group;
+                            $this->_group = $this->_getGroup($token['name']);
 
                             $this->_addToSearchedStoppers($this->_current);
                         }
@@ -709,6 +710,9 @@ class Bbcode implements ParserInterface
                 }
             }
         }
+        
+        // restore previous group state
+        $this->_group = $currentGroup;
 
         return $this->_tree;
     }
