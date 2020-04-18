@@ -411,7 +411,7 @@ class Bbcode implements ParserInterface
         if (!is_string($value)) {
             throw new Exception\InvalidArgumentException('Value to parse should be a string.');
         }
-        if (empty($value)) {
+        if (strlen($value) === 0) {
             throw new Exception\InvalidArgumentException('Value to parse cannot be left empty.');
         }
 
